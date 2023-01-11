@@ -1,0 +1,15 @@
+export { default as HomePage } from './Home';
+export { default as SinglePostPage } from './SinglePost';
+export { default as AuthorPostsPage } from './AuthorPosts';
+export { default as CategoryPostsPage } from './CategoryPosts';
+export { default as SearchPage } from './Search';
+export { default as CategoriesPage } from './Categories';
+export { default as RegisterPage } from './Register';
+export { default as LoginPage } from './Login';
+export { default as NewPostPage } from './NewPost';
+export { default as UserProfilePage } from './UserProfile';
+export { default as EditProfilePage } from './EditProfile';
+export { default as SignoutPage } from './Signout';
+export { default as LandingPage } from './Landing';
+export { default as Error404Page } from './Error404';
+export { default as Error500Page } from './Error500';
