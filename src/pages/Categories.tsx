@@ -23,11 +23,7 @@ const Categories = () => {
   } = useAppSelector((state: any) => state.fetchAllCategoriesReducer);
 
   useEffect(() => {
-    const unsub = (): void => {
-      dispatch(fetchAllCategories() as any);
-    };
-
-    return () => unsub();
+    dispatch(fetchAllCategories() as any);
   }, [dispatch]);
 
   return (

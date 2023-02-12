@@ -32,12 +32,8 @@ const SidePanel = ({showTopics, layout, showRecent}: ISidePanelProps): JSX.Eleme
   } = useAppSelector((state: any) => state.fetchAllCategoriesReducer);
 
   useEffect(() => {
-    const unsub = (): void => {
-      dispatch(fetchRecentPosts() as any);
-      dispatch(fetchAllCategories(10) as any);
-    };
-
-    return () => unsub();
+    dispatch(fetchRecentPosts() as any);
+    dispatch(fetchAllCategories(10) as any);
   }, [dispatch]);
 
   return (
