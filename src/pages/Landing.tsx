@@ -3,7 +3,8 @@ import {
   Button,
   Container,
   createStyles,
-  Group, Loader,
+  Group,
+  Loader,
   MantineTheme,
   Overlay,
   SimpleGrid,
@@ -11,8 +12,8 @@ import {
   TextInput,
   Title
 } from '@mantine/core';
-import {FaGithub, FaSearch} from 'react-icons/fa';
-import {useLocation, Link, useNavigate} from 'react-router-dom';
+import {FaSearch} from 'react-icons/fa';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {HeroNav} from '../common/hero-nav';
 import {useAppDispatch, useAppSelector} from '../hooks/hooks';
 import {ICategory, IPost} from '../constants';
@@ -127,12 +128,8 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    const unsub = () => {
-      dispatch(fetchAllPosts(null, 50) as any);
-      dispatch(fetchAllCategories() as any);
-    };
-
-    return () => unsub();
+    dispatch(fetchAllPosts(null, 50) as any);
+    dispatch(fetchAllCategories() as any);
   }, [dispatch, location]);
 
   useEffect(() => {

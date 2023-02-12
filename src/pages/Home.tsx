@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Group, Loader, MANTINE_SIZES, Stack, Text} from '@mantine/core';
+import {Button, Stack} from '@mantine/core';
 import {FaChevronDown} from 'react-icons/fa';
 import {ArticleCard} from '../components/article-card';
 import {IPost} from '../constants';
@@ -35,12 +35,8 @@ const Home = () => {
 
   useEffect(() => {
     setInitialFetching(true);
-    const unsub = () => {
-      dispatch(fetchAllPosts(null) as any);
-      setInitialFetching(false);
-    };
-
-    return () => unsub();
+    dispatch(fetchAllPosts(null) as any);
+    setInitialFetching(false);
   }, [dispatch]);
 
   useEffect(() => {
