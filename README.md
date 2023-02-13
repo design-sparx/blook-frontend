@@ -1,7 +1,7 @@
 # Blook blogging application
 
-[Online Demo](https://blook-blogger.netlify.app/ "Online Demo")
-[Story book documentation](https://63ea939d221d94af0615e664-guxaeamljh.chromatic.com/)
+- [Online Demo](https://blook-blogger.netlify.app/ "Online Demo")
+- [Story book documentation](https://63ea939d221d94af0615e664-guxaeamljh.chromatic.com/)
 
 ### About:
 This is a web application built using React (Create React App), template - Typescript and Sanity-IO serving as our Content Management System.
@@ -40,6 +40,7 @@ This is a web application built using React (Create React App), template - Types
 - eslint v8.26.0 - https://eslint.org/docs/latest/user-guide/getting-started
 
 ### Screenshot
+![image](https://user-images.githubusercontent.com/26582923/218576896-f8487090-5d05-434d-b957-685013bc4d20.png)
 
 ### Software
 Before proceeding, please ensure you have the following software installed on your computer.
