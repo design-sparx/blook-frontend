@@ -139,6 +139,8 @@ const AppNav = ({sampleUser}: IProps): JSX.Element => {
     navigate('/signout');
   };
 
+  console.log(Boolean(currentUser));
+
   return (
     <Header height={64} className={classes.header}>
       <div className={classes.inner}>
@@ -165,7 +167,7 @@ const AppNav = ({sampleUser}: IProps): JSX.Element => {
 
         <Group>
           {menuItems}
-          {Boolean(currentUser) || Boolean(sampleUser) &&
+          {(Boolean(currentUser) || Boolean(sampleUser)) &&
 						<Button
 							variant="light"
 							component={Link}

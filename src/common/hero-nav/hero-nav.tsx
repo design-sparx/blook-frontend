@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {useState} from 'react';
 import {Burger, Button, createStyles, Group, Header, Image, Text, UnstyledButton} from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
 import {Link} from 'react-router-dom';
