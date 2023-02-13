@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import {
   Avatar,
+  Burger,
   Button,
   createStyles,
-  Header,
   Group,
+  Header,
   Image,
   Menu,
-  Burger,
   Text,
   TextInput,
   UnstyledButton
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {FaPenNib, FaSearch, FaSignOutAlt} from 'react-icons/fa';
+import {FaGithub, FaPenNib, FaSearch, FaSignOutAlt} from 'react-icons/fa';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/hooks';
 import {urlFor} from '../../client';
@@ -86,11 +86,16 @@ const menu: { link: string, label: string }[] = [
   {label: 'categories', link: '/categories'}
 ];
 
+interface IProps {
+  // this props serves to pass dummy data for storybookjs
+  sampleUser?: any;
+}
+
 /**
  * top app navigation
  * @constructor
  */
-const AppNav = (): JSX.Element => {
+const AppNav = ({sampleUser}: IProps): JSX.Element => {
   const [opened, {toggle}] = useDisclosure(false);
   const isMobile = false;
   const [searchParams] = useSearchParams();
@@ -102,6 +107,7 @@ const AppNav = (): JSX.Element => {
   const {currentUser} = useAppSelector((state: any) => state.userReducer);
   const avatarImageUrl = Boolean(currentUser?.image) && urlFor(currentUser?.image).width(50).url();
 
+  console.log(currentUser);
   /**
    * menu items
    */
@@ -159,43 +165,49 @@ const AppNav = (): JSX.Element => {
 
         <Group>
           {menuItems}
-          {Boolean(currentUser) &&
+          {Boolean(currentUser) || Boolean(sampleUser) &&
 						<Button
 							variant="light"
 							component={Link}
-							to='/new'
+							to="/new"
 							leftIcon={<FaPenNib size={14}/>}
 							title="create a new post"
 						>
 							Create post
 						</Button>
           }
-          {Boolean(currentUser) &&
-						<>
-							<Menu shadow="md" position="bottom-end" withArrow>
-								<Menu.Target>
-									<UnstyledButton>
+          {Boolean(currentUser) || Boolean(sampleUser) ?
+            <>
+              <Menu shadow="md" position="bottom-end" withArrow>
+                <Menu.Target>
+                  <UnstyledButton>
                     {Boolean(avatarImageUrl) ?
                       <Avatar src={avatarImageUrl} radius="md" title="account options"/> :
                       <Avatar src={null} variant="light" radius="md" title="account options"/>
                     }
-									</UnstyledButton>
-								</Menu.Target>
+                  </UnstyledButton>
+                </Menu.Target>
 
-								<Menu.Dropdown>
-									<Menu.Item component={Link} to="/account">{currentUser?.name}</Menu.Item>
-									<Menu.Divider/>
-									<Menu.Item icon={<FaSignOutAlt size={14}/>} onClick={handleLogout}>Sign out</Menu.Item>
-								</Menu.Dropdown>
-							</Menu>
-						</>
-          }
-          {!Boolean(currentUser) &&
-						<>
+                <Menu.Dropdown>
+                  <Menu.Item component={Link} to="/account">{currentUser?.name || sampleUser?.name}</Menu.Item>
+                  <Menu.Divider/>
+                  <Menu.Item icon={<FaSignOutAlt size={14}/>} onClick={handleLogout}>Sign out</Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            </> :
+            !Boolean(currentUser) && <>
 							<Button variant="outline" component={Link} to="/login">Log in</Button>
 							<Button variant="filled" component={Link} to="/register">Create account</Button>
 						</>
           }
+          <Button
+            variant="subtle"
+            leftIcon={<FaGithub size={18}/>}
+            component="a"
+            href="https://github.com/kelvins-lab/blook-frontend"
+            target="_blank"
+            className={classes.link}>
+            Github</Button>
         </Group>
       </div>
     </Header>

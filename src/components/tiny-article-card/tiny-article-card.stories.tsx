@@ -1,9 +1,12 @@
 import React from 'react';
 import TinyArticleCard from './tiny-article-card';
 import {Post} from '../../constants/Post';
+import {withRouter} from 'storybook-addon-react-router-v6';
+import {Container, Paper, Stack, Text} from '@mantine/core';
 
 export default {
   title: 'Tiny article card',
+  decorators: [withRouter],
   component: TinyArticleCard
 };
 
@@ -35,13 +38,15 @@ const samplePost: Post = {
   },
   'publishedAt': '2022-10-22T13:03:07.712Z',
   'slug': {'_type': 'slug', 'current': 'here-s-what-really-matters-in-finance'},
-  'title': "Here's What Really Matters in Finance"
+  'title': 'Here\'s What Really Matters in Finance'
 };
 
-const sampleCategory = {
-  '_id': '1b7d20c1-4154-4fd0-af53-fb1830a9e449',
-  'description': 'Traditionally a section within larger news publications, entertainment-focused sites have been rapidly growing with the popularization of social media. Nowadays, this highly popular category has developed a long list of potential blog niches ideas to center your content on.\n\n',
-  'title': 'Entertainment '
-};
-
-export const Default = (): JSX.Element => <TinyArticleCard post={samplePost}/>;
+export const Default = (): JSX.Element => <Container>
+  <Stack>
+    <Text size="xl" weight={600}>Post/article card</Text>
+    <Text>Contains very abstract information about a post/article.</Text>
+    <Paper withBorder p="lg" radius="md">
+      <TinyArticleCard post={samplePost}/>
+    </Paper>
+  </Stack>
+</Container>;

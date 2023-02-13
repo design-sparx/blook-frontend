@@ -1,18 +1,10 @@
-import React, {useState} from 'react';
-import {
-  Button,
-  createStyles,
-  Header,
-  Group,
-  Burger,
-  Text,
-  UnstyledButton, Image
-} from '@mantine/core';
+import React, {ReactNode, useState} from 'react';
+import {Burger, Button, createStyles, Group, Header, Image, Text, UnstyledButton} from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/hooks';
-import {urlFor} from '../../client';
 import LogoImg from '../../asset/img/logo.png';
+import {FaGithub} from 'react-icons/fa';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -76,10 +68,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const menu: { link: string, label: string }[] = [
+export const menu: { link: string, label: string }[] = [
   {label: 'about us', link: '/about-us'},
   {label: 'contact', link: '/contact'},
 ];
+
+
+
 
 /**
  * top app navigation
@@ -88,12 +83,9 @@ const menu: { link: string, label: string }[] = [
 const HeroNav = (): JSX.Element => {
   const [opened, {toggle}] = useDisclosure(false);
   const isMobile = false;
-  const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
   const {classes, cx} = useStyles();
   const [active, setActive] = useState('');
-  const {loading, error, currentUser} = useAppSelector((state: any) => state.userReducer);
-  const avatarImageUrl = Boolean(currentUser?.image) && urlFor(currentUser?.image).width(50).url();
+  const {currentUser} = useAppSelector((state: any) => state.userReducer);
 
   /**
    * menu items
@@ -130,6 +122,14 @@ const HeroNav = (): JSX.Element => {
         <Group spacing="sm">
           <Button variant="outline" component={Link} to="/login">Log in</Button>
           <Button variant="filled" component={Link} to="/register">Create account</Button>
+          <Button
+            variant="subtle"
+            leftIcon={<FaGithub size={18}/>}
+            component="a"
+            href="https://github.com/kelvins-lab/blook-frontend"
+            target="_blank"
+            className={classes.link}>
+            Github</Button>
         </Group>
       </div>
     </Header>
