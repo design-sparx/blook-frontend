@@ -1,6 +1,6 @@
 # Blook blogging application
 
-[![Github pages](https://github.com/kelvink96ltd/blook-frontend/actions/workflows/deploy.yml/badge.svg)](https://github.com/kelvins-lab/blook-frontend/actions/workflows/deploy.yml/badge.svg)
+![Github pages](https://github.com/kelvink96ltd/blook-frontend/actions/workflows/deploy.yml/badge.svg)
 
 - [Online Demo](https://blook-blogger.netlify.app/ "Online Demo")
 - [Story book documentation](https://63ea939d221d94af0615e664-guxaeamljh.chromatic.com/)
