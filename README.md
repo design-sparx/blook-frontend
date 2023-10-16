@@ -1,3 +1,5 @@
+![mockup](https://github.com/design-sparx/blook-frontend/assets/26582923/d509bc50-cd5a-4681-9b6a-54e74a65c453)
+
 # Blook blogging application
 
 [![Build and Deploy](https://github.com/kelvins-lab/blook-frontend/actions/workflows/deploy.yml/badge.svg)](https://github.com/kelvins-lab/blook-frontend/actions/workflows/deploy.yml)
