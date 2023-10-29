@@ -4,7 +4,7 @@ import {
   Avatar,
   Card,
   Col,
-  createStyles,
+  createStyles, Flex,
   Grid,
   Group,
   Image, MantineTheme,
@@ -27,8 +27,8 @@ import {readingTime} from '../../utils';
  * @param withAuthor - require author information
  */
 interface ArticleCardProps {
-  post: Post
-  withAuthor?: boolean
+  post: Post;
+  withAuthor?: boolean;
 }
 
 const useStyles = createStyles((theme: MantineTheme) => ({
@@ -69,15 +69,20 @@ const ArticleCard = ({post, withAuthor}: ArticleCardProps): JSX.Element => {
   return (
     <Card className={classes.card} px={0}>
       <Group spacing="xs" mb="md" align="center">
-        {withAuthor &&
-					<>
-						<UnstyledButton className={classes.author} component={Link} to={`/@${author.slug.current}`}>
-							<Avatar src={avatarImageUrl} size="sm"/>
-							<Text size="sm">{author.name}</Text>
-						</UnstyledButton>
-						<Text mb="xs">.</Text>
-					</>
-        }
+        {withAuthor && (
+          Boolean(author?.slug?.current) ?
+            <>
+              <UnstyledButton className={classes.author} component={Link} to={`/@${author.slug.current}`}>
+                <Avatar src={avatarImageUrl} size="sm"/>
+                <Text size="sm">{author.name}</Text>
+              </UnstyledButton>
+              <Text mb="xs">.</Text>
+            </> :
+            <>
+              <Avatar size="sm"/>
+              <Text>Anonymous</Text>
+            </>
+        )}
         <DatesText date={publishedAt}/>
         <Text mb="xs">.</Text>
         <Text size="sm">{readingTime(toPlainText(body))} min read</Text>
@@ -85,17 +90,28 @@ const ArticleCard = ({post, withAuthor}: ArticleCardProps): JSX.Element => {
       <Stack spacing="xs">
         <Grid>
           <Col span={9}>
-            <Text
-              size="lg"
-              weight={600}
-              lineClamp={1}
-              mb="sm"
-              component={Link}
-              to={{pathname: `/@${author.slug.current}/${slug.current}`}}
-              className={classes.title}
-            >
-              {title}
-            </Text>
+            {Boolean(author?.slug?.current) ?
+              <Text
+                size="lg"
+                weight={600}
+                lineClamp={1}
+                mb="sm"
+                component={Link}
+                to={{pathname: `/@${author.slug.current}/${slug.current}`}}
+                className={classes.title}
+              >
+                {title}
+              </Text> :
+              <Text
+                size="lg"
+                weight={600}
+                lineClamp={1}
+                mb="sm"
+                className={classes.title}
+              >
+                {title}
+              </Text>
+            }
             <Text lineClamp={3} size="sm" color="dimmed">{toPlainText(body)}</Text>
             <Group spacing="xs" position="apart" mt="md">
               <CategoryBadges categories={categories}/>
